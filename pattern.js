@@ -1,30 +1,26 @@
-const ROWS = 5; // number of rows in pattern
-
-function factorial(n) {
-    let fact = 1;
-    for (let i = 1; i <= n; i++) {
-        fact *= i;
-    }
-    return fact;
-}
-
-function combination(n, r) {
-    return factorial(n) / (factorial(r) * factorial(n - r));
-}
+const ROWS = 5;
 
 for (let i = ROWS - 1; i >= 0; i--) {
 
-    let row = "";
+    let line = "";
 
-    // spaces
-    for (let spaceCount = 0; spaceCount < ROWS - i - 1; spaceCount++) {
-        row += " ";
+    // print spaces
+    for (let space = 0; space < ROWS - i - 1; space++) {
+        line += " ";
     }
 
-    // numbers
+    let num = 1;
+
     for (let j = 0; j <= i; j++) {
-        row += combination(i, j) + " ";
+
+        if (j > 0) {
+            line += " ";
+        }
+
+        line += num;
+
+        num = (num * (i - j)) / (j + 1);
     }
 
-    console.log(row.trim());
+    console.log(line);
 }
